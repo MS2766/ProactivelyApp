@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { scheduleAppointmentNotification } from '../../utils/notifications';
 import Feather from '@expo/vector-icons/Feather';
+import { openGoogleMeet } from '../../utils/meetingUtils';
 
 type RootStackParamList = {
   Home: undefined;
@@ -18,19 +19,16 @@ type AppointmentScreenProps = {
 
 const Appointment = ({ navigation }: AppointmentScreenProps) => {
   const handleScheduleNotification = async () => {
-    // Create a test date 10 seconds from now for testing
     const testDate = new Date();
     testDate.setSeconds(testDate.getSeconds() + 10);
-
-    // For the actual appointment date
     const appointmentDate = new Date('2025-06-14T22:55:00');
     const doctorName = 'Laurie Simons';
-
-    // Schedule both notifications
     await scheduleAppointmentNotification(appointmentDate, doctorName);
-
-    // Log the scheduled time
     console.log('Appointment notification scheduled for:', appointmentDate.toLocaleString());
+  };
+
+  const handleJoinMeeting = () => {
+    openGoogleMeet('abc-defa-dwa');
   };
 
   useEffect(() => {
@@ -39,7 +37,6 @@ const Appointment = ({ navigation }: AppointmentScreenProps) => {
 
   return (
     <View style={styles.container}>
-      {/* Appointment Card */}
       <View style={styles.card}>
         <View style={styles.upcomingHeader}>
           <Text style={styles.upcomingLabel}>UPCOMING</Text>
@@ -59,12 +56,10 @@ const Appointment = ({ navigation }: AppointmentScreenProps) => {
         <Text style={styles.meetingLink}>www.meet.google.com/abc-defa-dwa</Text>
       </View>
 
-      {/* Join Meeting Button */}
-      <TouchableOpacity style={styles.joinButton}>
+      <TouchableOpacity style={styles.joinButton} onPress={handleJoinMeeting}>
         <Text style={styles.joinButtonText}>Join meeting</Text>
         <Feather name="arrow-up-right" size={24} color="white" />
       </TouchableOpacity>
-
     </View>
   );
 };

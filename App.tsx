@@ -6,7 +6,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AppNavigator from './navigation/AppNavigator';
 import { requestNotificationPermissions } from './utils/notifications';
 
-// Configure notifications
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -22,14 +21,12 @@ export default function App() {
 
   useEffect(() => {
     requestNotificationPermissions();
-
     const subscription = Notifications.addNotificationResponseReceivedListener(response => {
       const screen = response.notification.request.content.data?.screen;
       if (screen && navigationRef.current) {
         navigationRef.current.navigate('Appointment');
       }
     });
-
     return () => subscription.remove();
   }, []);
 

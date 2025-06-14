@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3566E8',
     padding: 16,
     borderRadius: 8,
-    marginTop: 40, // Increased spacing as per previous change
+    marginTop: 40,
     alignItems: 'center',
   },
   buttonText: { color: '#fff', fontWeight: 'bold', fontSize: 16 },

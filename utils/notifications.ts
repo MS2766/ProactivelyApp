@@ -2,7 +2,6 @@ import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
 import { LogBox } from 'react-native';
 
-// Suppress Expo Go warning about remote notifications
 LogBox.ignoreLogs([
   'expo-notifications: Android Push notifications',
   '`expo-notifications` functionality is not fully supported in Expo Go',
@@ -19,7 +18,6 @@ Notifications.setNotificationHandler({
   }),
 });
 
-// 📲 Request permissions
 export async function requestNotificationPermissions() {
   const { status } = await Notifications.requestPermissionsAsync();
   return status === 'granted';

@@ -4,7 +4,6 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import AccountScreen from '../screens/Account/AccountScreen';
 import HomeScreen from '../screens/Home/HomeScreen';
 
-
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = ({ setIsLoggedIn }: { setIsLoggedIn: (val: boolean) => void }) => {

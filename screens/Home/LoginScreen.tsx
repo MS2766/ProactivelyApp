@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     marginLeft: 8,
-    marginTop: 60, // Moves the badge slightly lower
+    marginTop: 60,
     resizeMode: 'contain',
   },
   innerContainer: {

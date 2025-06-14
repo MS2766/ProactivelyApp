@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     paddingHorizontal: 12,
     paddingVertical: 6,
-    width: '50%', // Make the container half width
+    width: '50%',
   },
   input: {
     flex: 1,
