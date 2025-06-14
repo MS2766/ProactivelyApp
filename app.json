@@ -21,19 +21,11 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "permissions": [
+        "NOTIFICATIONS"
+      ],
+      "versionCode": 1
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/logo.png"
-        }
-      ]
-    ],
     "extra": {
       "eas": {
         "projectId": "fd29671b-47da-4be8-bc14-a014eb83f79a"
