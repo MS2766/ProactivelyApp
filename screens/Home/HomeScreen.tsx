@@ -383,11 +383,11 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
   headerContainer: {
     backgroundColor: '#3566E8',
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
     padding: 20,
     paddingTop: 60,
+    paddingBottom: 60,
     position: 'relative',
+    zIndex: 0,
   },
   headerTop: {
     flexDirection: 'row',
@@ -474,7 +474,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 40,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
     backgroundColor: '#fff',
+    marginTop: -20,
+    position: 'relative',
+    zIndex: 1,
   },
   card: {
     backgroundColor: '#fff',
