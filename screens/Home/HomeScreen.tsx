@@ -2,8 +2,9 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useIsFocused } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
+  Animated,
   Image,
   ScrollView,
   StyleSheet,
@@ -42,8 +43,10 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
     bmi: '0',
     sleep: '0'
   });
+  const [fadeAnim] = useState(new Animated.Value(-100));
   const isFocused = useIsFocused();
   const score = 91;
+  const translateX = useRef(new Animated.Value(-150)).current;
 
   useEffect(() => {
     const loadTodos = async () => {
@@ -86,6 +89,31 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
     loadHealthMetrics();
   }, [isFocused]);
 
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 100,
+      duration: 1500,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(translateX, {
+          toValue: 400,
+          duration: 15000,
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateX, {
+          toValue: -150,
+          duration: 0,
+          useNativeDriver: true,
+        })
+      ])
+    ).start();
+  }, []);
+
   const toggleTodo = async (id: number) => {
     const updated = todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
@@ -121,12 +149,17 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
 
         <View style={styles.backgroundImageContainer}>
           <Text style={styles.healthScoreInfo}>This score is for information purposes only.</Text>
-          <Image
+          <Animated.Image
             source={require('../../assets/proactively_badge_home.png')}
-            style={styles.backgroundImage}
-            height={100}
-            width={200}
-            resizeMode="cover"
+            style={[
+              styles.backgroundImage,
+              {
+                transform: [{ translateX }],
+              }
+            ]}
+            height={250}
+            width={500}
+            resizeMode="contain"
           />
         </View>
 
@@ -385,12 +418,11 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     position: 'relative',
-    width: '100%',
-    height: '100%',
-    opacity: 0.2,
-    marginTop: -100,
-    marginBottom: 0,
-    marginLeft: 70,
+    width: '80%',
+    height: '80%',
+    opacity: 0.4,
+    marginTop: -150,
+    marginBottom: -70,
   },
   healthScoreInfo: { 
     color: '#dce6f7', 
