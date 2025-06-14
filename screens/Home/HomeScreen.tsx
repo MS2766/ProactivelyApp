@@ -234,7 +234,9 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                   <View style={styles.healthCardTop}>
                     <View style={styles.healthLabelContainer}>
                       <Text style={[styles.healthLabel, styles.healthLabelBold]}>Steps</Text>
-                      <Text style={[styles.updatedText, { color: '#020650' }]}>Updated</Text>
+                      <Text style={[styles.updatedText, { color: '#020650' }]}>
+                        {healthMetrics.steps === '0' ? 'No data' : 'Updated'}
+                        </Text>
                     </View>
                     <Ionicons name="chevron-forward" size={20} color="#020650" />
                   </View>
@@ -259,7 +261,9 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                   <View style={styles.healthCardTop}>
                     <View style={styles.healthLabelContainer}>
                       <Text style={[styles.healthLabel, styles.healthLabelBold]}>BMI</Text>
-                      <Text style={[styles.updatedText, { color: '#e69b00' }]}>Updated</Text>
+                      <Text style={[styles.updatedText, { color: '#e69b00' }]}>
+                        {healthMetrics.bmi === '0' ? 'No data' : 'Updated'}
+                       </Text>
                     </View>
                     <Ionicons name="chevron-forward" size={20} color="#e69b00" />
                   </View>
@@ -289,7 +293,9 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                   <View style={styles.healthCardTop}>
                     <View style={styles.healthLabelContainer}>
                       <Text style={[styles.healthLabel, styles.healthLabelBold]}>Sleep</Text>
-                      <Text style={[styles.updatedText, { color: '#720000' }]}>Updated</Text>
+                      <Text style={[styles.updatedText, { color: '#720000' }]}>
+                        {healthMetrics.sleep === '0' ? 'No data' : 'Updated'}
+                      </Text>
                     </View>
                     <Ionicons name="chevron-forward" size={20} color="#720000" />
                   </View>
